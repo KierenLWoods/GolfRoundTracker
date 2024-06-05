@@ -1,0 +1,58 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #0a0a23;
+    color: #ffffff;
+}
+
+.container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.card-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.score-container-drpdwn {
+    display: none;
+}
+h1{
+    text-align: center;
+}
+.add-a-round-btn {
+    border-radius: 20px;
+    padding:1rem
+}
+
+.headers {
+    border: solid 1px white;
+    padding: 0px 2rem;
+}
+.submit-round-btn {
+    border-radius: 20px;
+    padding:1em;
+}
+.user-score-container {
+    align-self: flex-end;
+    display: flex;
+    border:solid 1px white;
+}
+
+.user-score-to-par {    
+    align-self: flex-end;
+}
+
+.round-container{
+    display: flex;
+    flex-direction: column;
+    border:1px solid white;
+    width:80%;
+    padding:2rem;
+}
+
+.round-card{
+    padding: 2rem;
+    border: 1px solid white;;
+}
