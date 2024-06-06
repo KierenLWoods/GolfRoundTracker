@@ -15,7 +15,7 @@ body {
     flex-direction: column;
 }
 
-.score-container-drpdwn {
+.score-container-drpdwn , .score-container-score,.score-container-table{
     display: none;
 }
 h1{
@@ -30,6 +30,7 @@ h1{
     border: solid 1px white;
     padding: 0px 2rem;
 }
+
 .submit-round-btn {
     border-radius: 20px;
     padding:1em;

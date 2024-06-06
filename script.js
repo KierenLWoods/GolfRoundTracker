@@ -2,6 +2,8 @@ const addRoundButton = document.getElementById("add-a-round");
 const scoreContainer = document.querySelector(".score-container");
 const courseDropDownList = document.querySelector(".score-container-drpdwn");
 const scoreSummaryContainer = document.querySelector(".summary-container");
+const scorecardTable = document.querySelector('.score-container-table');
+const submitRoundButton = document.querySelector('.submit-round-btn');
 
 let cardTableExists = false;
 let parInputs;
@@ -51,23 +53,6 @@ let currentRound = {
 
 const createScoreCard = () => {
   addRoundButton.style.display = "none";
-  let cardContainer;
-  cardContainer = document.querySelector(".card-container");
-  if (cardContainer) {
-    scoreContainer.removeChild(cardContainer);
-  }
-  cardContainer = document.createElement("div");
-  cardContainer.className = "card-container";
-  scoreContainer.appendChild(cardContainer);
-  let userScoreContainer = document.createElement("div");
-  userScoreContainer.className = "user-score-container";
-  userScoreToPar = document.createElement("div");
-  userScoreToPar.className = "user-score-to-par";
-  userScoreToPar.innerText = 0;
-  cardContainer.appendChild(userScoreContainer);
-  userScoreContainer.appendChild(document.createElement("div")).innerText =
-    "User Score:";
-  userScoreContainer.appendChild(userScoreToPar);
   createDropDownOptionTags();
   createRoundSubmitButton();
 };
@@ -167,9 +152,9 @@ const calculateOverallScore = () => {
   parInputs.forEach((input, index) => {
     if (input.value && userInputs[index].value) {
       overAllScore += parseInt(userInputs[index].value) - parseInt(input.value);
-    }
+    } 
   });
-  document.querySelector(".user-score-to-par").innerText =
+  document.querySelector(".score-container-currentscore").innerText =
     overAllScore > 0
       ? `+${overAllScore}`
       : overAllScore === 0
@@ -200,29 +185,7 @@ const sumTotal = (parElements) => {
   return total;
 };
 
-const createCalculateScoreButton = () => {
-  let calculateScoreButton = document.createElement("button");
-  calculateScoreButton.className = "calculate-round-btn";
-  calculateScoreButton.innerText = "Calculate Score";
-  calculateScoreButton.style.display = "none";
-  scoreContainer.appendChild(calculateScoreButton);
-  calculateScoreButton.addEventListener("click", calculateScore);
-};
 
-const createRoundSubmitButton = () => {
-  submitScoreButton = document.createElement("button");
-  submitScoreButton.className = "submit-round-btn";
-  submitScoreButton.innerText = "Submit Round";
-  submitScoreButton.style.display = "none";
-  scoreContainer.appendChild(submitScoreButton);
-  submitScoreButton.addEventListener("click", () => {
-    myRounds.push({
-      score: userScoreToPar,
-    });
-    console.log(currentRound);
-    displayScores();
-  });
-};
 
 const calculateScore = () => {};
 
@@ -242,4 +205,12 @@ courseDropDownList.addEventListener("change", (e) => {
   currentRound.course = courses
     .filter((course) => course.id == courseId)
     .pop().name;
+    scorecardTable.style.display = "block";
+});
+submitRoundButton.addEventListener("click", () => {
+  myRounds.push({
+    score: userScoreToPar,
+  });
+  console.log(currentRound);
+  displayScores();
 });
