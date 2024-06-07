@@ -1,6 +1,12 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #0a0a23;
     color: #ffffff;
 }
 
@@ -9,13 +15,19 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width:80%;
+    max-width:750px;
+    background-color: #23424a;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 .card-container{
     display: flex;
     flex-direction: column;
 }
 
-.score-container-drpdwn , .score-container-score,.score-container-table{
+.score-container-drpdwn , .score-container-score,.score-container-table,.submit-round-btn{
     display: none;
 }
 h1{

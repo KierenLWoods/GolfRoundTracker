@@ -4,6 +4,7 @@ const courseDropDownList = document.querySelector(".score-container-drpdwn");
 const scoreSummaryContainer = document.querySelector(".summary-container");
 const scorecardTable = document.querySelector('.score-container-table');
 const submitRoundButton = document.querySelector('.submit-round-btn');
+const userScore = document.querySelector('.score-container-score');
 
 let cardTableExists = false;
 let parInputs;
@@ -172,8 +173,7 @@ const isCardComplete = () => {
     }
   });
   if (cardComplete) {
-    console.log("Show me");
-    document.querySelector(".submit-round-btn").style.display = "block";
+    submitRoundButton.style.display = "block";
   }
 };
 
@@ -206,6 +206,7 @@ courseDropDownList.addEventListener("change", (e) => {
     .filter((course) => course.id == courseId)
     .pop().name;
     scorecardTable.style.display = "block";
+    userScore.style.display = "block";
 });
 submitRoundButton.addEventListener("click", () => {
   myRounds.push({
