@@ -1,40 +1,54 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles.css">
-        <title>MyRoundTracker</title>
-    </head>
-    <body>
-        <main>
-            <div class="container">
-                <div class="score-container">
-                    <h1>Track Your Rounds.</h1>
-                <button class="add-a-round-btn" id="add-a-round">Add a round</button>
-                <select class="score-container-drpdwn"></select>
-                <div class="score-container-score">UserScore:<span class="score-container-currentscore"></span></div>
-                <table class="score-container-table">
-                    <thead>
-                        <tr>
-                            <th>Hole Number</th>
-                            <th>Par</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot></tfoot>
-                </table>
-                <button class="submit-round-btn">Submit Round</button>
-                </div>
-
-                <div class="rounds">
-
-                </div>
-                
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>MyRoundTracker</title>
+  </head>
+  <body onload="getRounds()">
+    <main>
+      <div class="card">
+        <div class="container">
+          <div class="score-container">
+            <h1>Track Your Rounds.</h1>
+            <button class="add-a-round-btn" id="add-a-round">
+              Add a round
+            </button>
+            <select class="score-container-drpdwn"></select>
+            <input type="date" class="score-container-date" />
+            <div class="score-container-score">
+              UserScore:<span class="score-container-currentscore"></span>
             </div>
-        </main>
-        <script src="./script.js"></script>
-    </body>
+            <table class="score-container-table">
+              <thead>
+                <tr>
+                  <th>Hole Number</th>
+                  <th>Par</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+              <tfoot></tfoot>
+            </table>
+            <button class="submit-round-btn">Submit Round</button>
+          </div>
+        </div>
+      </div>
+      <div class="rounds">
+        <div class="container container--light">
+          <h2>User Rounds:</h2>
+          <select name="" id="" class="rounds__dropdown">
+            <option></option>
+            <option value="lowToHigh">Score:Low to high</option>
+            <option value="highToLow">Score:High to low</option>
+            <option value="newest">Newer to Older</option>
+            <option value="older">Older to Newer</option>
+          </select>
+          <div class="rounds__col"></div>
+        </div>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
 </html>

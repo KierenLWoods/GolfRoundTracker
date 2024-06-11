@@ -1,14 +1,17 @@
 const addRoundButton = document.getElementById("add-a-round");
 const scoreContainer = document.querySelector(".score-container");
 const courseDropDownList = document.querySelector(".score-container-drpdwn");
-const scoreSummaryContainer = document.querySelector(".summary-container");
-const scorecardTable = document.querySelector('.score-container-table');
-const submitRoundButton = document.querySelector('.submit-round-btn');
-const userScore = document.querySelector('.score-container-score');
+const scoreSummaryContainer = document.querySelector(".rounds__col");
+const scorecardTable = document.querySelector(".score-container-table");
+const submitRoundButton = document.querySelector(".submit-round-btn");
+const userScore = document.querySelector(".score-container-score");
+const roundDate = document.querySelector(".score-container-date");
+const roundsFilterDropDown = document.querySelector(".rounds__dropdown");
 
 let cardTableExists = false;
 let parInputs;
 let parField;
+let totalStrokes = 0;
 const myRounds = [];
 let userScoreToPar;
 
@@ -50,12 +53,14 @@ const courses = [
 let currentRound = {
   course: "",
   scores: {},
+  scoreToPar: 0,
+  total: 0,
+  dateOfRound: "",
 };
 
 const createScoreCard = () => {
   addRoundButton.style.display = "none";
   createDropDownOptionTags();
-  createRoundSubmitButton();
 };
 
 const createCardTable = (courseId) => {
@@ -76,7 +81,7 @@ const createCardTable = (courseId) => {
       rowheader.innerText = `${index + 1}`;
       let par = trElement
         .appendChild(document.createElement("td"))
-        .appendChild(document.createElement("input"));
+        .appendChild(document.createElement("div"));
       par.type = "number";
       par.className = "par-score";
       let userScore = trElement
@@ -120,7 +125,7 @@ function fillInScoreCard(course) {
   console.log(course);
   let parInputs = document.querySelectorAll(".par-score");
   parInputs.forEach((hole, index) => {
-    hole.value = course.scoreCard[index + 1];
+    hole.innerText = course.scoreCard[index + 1];
   });
 }
 
@@ -151,9 +156,10 @@ const calculateOverallScore = () => {
   let userInputs = document.querySelectorAll(".user-score");
   let overAllScore = 0;
   parInputs.forEach((input, index) => {
-    if (input.value && userInputs[index].value) {
-      overAllScore += parseInt(userInputs[index].value) - parseInt(input.value);
-    } 
+    if (userInputs[index].value) {
+      overAllScore +=
+        parseInt(userInputs[index].value) - parseInt(input.innerText);
+    }
   });
   document.querySelector(".score-container-currentscore").innerText =
     overAllScore > 0
@@ -161,6 +167,8 @@ const calculateOverallScore = () => {
       : overAllScore === 0
       ? "Even"
       : overAllScore;
+  currentRound.scoreToPar = overAllScore;
+  currentRound.total = totalStrokes;
 };
 
 const isCardComplete = () => {
@@ -168,7 +176,7 @@ const isCardComplete = () => {
   let parInputs = document.querySelectorAll(".par-score");
   let userInputs = document.querySelectorAll(".user-score");
   parInputs.forEach((input, index) => {
-    if (!input.value || !userInputs[index].value) {
+    if (!userInputs[index].value) {
       cardComplete = false;
     }
   });
@@ -182,19 +190,60 @@ const sumTotal = (parElements) => {
   parElements.forEach((el) => {
     total += el.value ? parseInt(el.value) : 0;
   });
-  return total;
+  totalStrokes = total;
+  return totalStrokes;
 };
 
-
-
-const calculateScore = () => {};
+const getRounds = () => {
+  let rounds = JSON.parse(localStorage.getItem("rounds"));
+  rounds.forEach((round) => myRounds.push(round));
+  displayScores();
+};
 
 const displayScores = () => {
+  scoreSummaryContainer.innerHTML = "";
   myRounds.forEach((round) => {
-    let roundCard = document.createElement("div");
-    roundCard.className = "round-card";
-    scoreSummaryContainer.appendChild(roundCard);
+    createRound(round);
   });
+};
+
+const createRound = (round) => {
+  let roundCard = document.createElement("div");
+  roundCard.className = "round-cards";
+  scoreSummaryContainer.appendChild(roundCard);
+  console.log(round);
+  let cardContents = `
+    <div>Course:${round.course}</div>
+    <div>Round Date:${round.dateOfRound}</div>
+    <div>Score to Par:${round.scoreToPar}</div>
+    <div>Total:${round.total}</div>
+    `;
+  roundCard.innerHTML = cardContents;
+};
+
+const filterRounds = (filter) => {
+  switch (filter) {
+    case "lowToHigh":
+      myRounds.sort((a, b) => a.total - b.total);
+      displayScores();
+      break;
+    case "highToLow":
+      myRounds.sort((a, b) => b.total - a.total);
+      displayScores();
+      break;
+    case "newest":
+      myRounds.sort(
+        (a, b) => Date.parse(b.dateOfRound) - Date.parse(a.dateOfRound)
+      );
+      displayScores();
+      break;
+    case "older":
+      myRounds.sort(
+        (a, b) => Date.parse(a.dateOfRound) - Date.parse(b.dateOfRound)
+      );
+      displayScores();
+      break;
+  }
 };
 
 addRoundButton.addEventListener("click", createScoreCard);
@@ -205,13 +254,19 @@ courseDropDownList.addEventListener("change", (e) => {
   currentRound.course = courses
     .filter((course) => course.id == courseId)
     .pop().name;
-    scorecardTable.style.display = "block";
-    userScore.style.display = "block";
+  scorecardTable.style.display = "block";
+  userScore.style.display = "block";
+  roundDate.style.display = "block";
 });
 submitRoundButton.addEventListener("click", () => {
-  myRounds.push({
-    score: userScoreToPar,
-  });
-  console.log(currentRound);
-  displayScores();
+  myRounds.push(currentRound);
+  localStorage.setItem("rounds", JSON.stringify(myRounds));
+  displayScores(currentRound);
+});
+roundDate.addEventListener("change", () => {
+  currentRound.dateOfRound = roundDate.value;
+});
+
+roundsFilterDropDown.addEventListener("change", (e) => {
+  filterRounds(e.target.value);
 });

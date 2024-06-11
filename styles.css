@@ -1,71 +1,84 @@
 html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #ffffff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #ffffff;
 }
 
 .container {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width:80%;
-    max-width:750px;
-    background-color: #23424a;
-    border-radius: 10px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  max-width: 750px;
+  background-color: #23424a;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
-.card-container{
-    display: flex;
-    flex-direction: column;
+.card-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.score-container-drpdwn , .score-container-score,.score-container-table,.submit-round-btn{
-    display: none;
+.score-container-drpdwn,
+.score-container-score,
+.score-container-table,
+.submit-round-btn,
+.score-container-date {
+  display: none;
 }
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
 .add-a-round-btn {
-    border-radius: 20px;
-    padding:1rem
+  border-radius: 20px;
+  padding: 1rem;
 }
 
 .headers {
-    border: solid 1px white;
-    padding: 0px 2rem;
+  border: solid 1px white;
+  padding: 0px 2rem;
 }
 
 .submit-round-btn {
-    border-radius: 20px;
-    padding:1em;
+  border-radius: 20px;
+  padding: 1em;
 }
 .user-score-container {
-    align-self: flex-end;
-    display: flex;
-    border:solid 1px white;
+  align-self: flex-end;
+  display: flex;
+  border: solid 1px white;
 }
 
-.user-score-to-par {    
-    align-self: flex-end;
+.user-score-to-par {
+  align-self: flex-end;
 }
 
-.round-container{
-    display: flex;
-    flex-direction: column;
-    border:1px solid white;
-    width:80%;
-    padding:2rem;
+.container--light {
+  background-color: #136c72;
 }
 
-.round-card{
-    padding: 2rem;
-    border: 1px solid white;;
+.rounds__col {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  width: 80%;
+  padding: 2rem;
+}
+
+.round-cards {
+  padding: 2rem;
+  background-color: lightgray;
+  color: black;
+  border-radius: 2rem;
+  margin-top: 2rem;
 }
