@@ -64,14 +64,8 @@ const createScoreCard = () => {
 };
 
 const createCardTable = (courseId) => {
-  //check if table already exists if so dont create a new one just update content
-  //Create Table headers etc,
-  //Fill in card
-  //Add event listeners
   let selectedCourse = courses.filter((item) => item.id == courseId).pop();
-
   let tableBody = document.querySelector("tbody");
-  //create body rows
   let trElementArray = new Array(selectedCourse.holes)
     .fill(0)
     .map((element, index) => {
@@ -84,6 +78,7 @@ const createCardTable = (courseId) => {
         .appendChild(document.createElement("div"));
       par.type = "number";
       par.className = "par-score";
+      par.innerText = selectedCourse.scoreCard[index + 1];
       let userScore = trElement
         .appendChild(document.createElement("td"))
         .appendChild(document.createElement("input"));
@@ -103,9 +98,7 @@ const createCardTable = (courseId) => {
   parField.className = "course-par";
   grossScoreField = tableFoot.appendChild(document.createElement("td"));
   grossScoreField.className = "gross-score";
-  parScoreEntryEventListeners(parInputs);
   grossScoreEntryEventListeners(userInputs);
-  fillInScoreCard(selectedCourse);
 };
 
 function createDropDownOptionTags() {
@@ -120,24 +113,6 @@ function createDropDownOptionTags() {
     courseDropDownList.appendChild(option);
   });
 }
-
-function fillInScoreCard(course) {
-  console.log(course);
-  let parInputs = document.querySelectorAll(".par-score");
-  parInputs.forEach((hole, index) => {
-    hole.innerText = course.scoreCard[index + 1];
-  });
-}
-
-const parScoreEntryEventListeners = (parInputArray) => {
-  parInputArray.forEach((element) => {
-    element.addEventListener("change", () => {
-      document.querySelector(".course-par").innerText = sumTotal(parInputArray);
-      calculateOverallScore();
-      isCardComplete();
-    });
-  });
-};
 
 const grossScoreEntryEventListeners = (grossScoreInputArray) => {
   grossScoreInputArray.forEach((element, index) => {
@@ -213,10 +188,12 @@ const createRound = (round) => {
   scoreSummaryContainer.appendChild(roundCard);
   console.log(round);
   let cardContents = `
+  <div class="round-card-content">
     <div>Course:${round.course}</div>
     <div>Round Date:${round.dateOfRound}</div>
     <div>Score to Par:${round.scoreToPar}</div>
     <div>Total:${round.total}</div>
+    </div>
     `;
   roundCard.innerHTML = cardContents;
 };

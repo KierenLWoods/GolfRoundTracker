@@ -8,46 +8,59 @@
   </head>
   <body onload="getRounds()">
     <main>
-      <div class="card">
+      <nav class="nav">
         <div class="container">
-          <div class="score-container">
-            <h1>Track Your Rounds.</h1>
-            <button class="add-a-round-btn" id="add-a-round">
-              Add a round
-            </button>
-            <select class="score-container-drpdwn"></select>
-            <input type="date" class="score-container-date" />
-            <div class="score-container-score">
-              UserScore:<span class="score-container-currentscore"></span>
+          <ul class="nav__list">
+            <li class="nav__item">Home</li>
+            <li class="nav__item"><a href="#addRound">Add Round</a></li>
+            <li class="nav__item"><a href="#rounds">Rounds</a></li>
+          </ul>
+        </div>
+      </nav>
+      <section id="addRound" class="add-round">
+        <div class="card">
+          <div class="container">
+            <div class="score-container">
+              <h1>Track Your Rounds.</h1>
+              <button class="add-a-round-btn" id="add-a-round">
+                Add a round
+              </button>
+              <select class="score-container-drpdwn"></select>
+              <input type="date" class="score-container-date" />
+              <div class="score-container-score">
+                UserScore:<span class="score-container-currentscore"></span>
+              </div>
+              <table class="score-container-table">
+                <thead>
+                  <tr>
+                    <th>Hole Number</th>
+                    <th>Par</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+              </table>
+              <button class="submit-round-btn">Submit Round</button>
             </div>
-            <table class="score-container-table">
-              <thead>
-                <tr>
-                  <th>Hole Number</th>
-                  <th>Par</th>
-                  <th>Score</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-              <tfoot></tfoot>
-            </table>
-            <button class="submit-round-btn">Submit Round</button>
           </div>
         </div>
-      </div>
-      <div class="rounds">
-        <div class="container container--light">
-          <h2>User Rounds:</h2>
-          <select name="" id="" class="rounds__dropdown">
-            <option></option>
-            <option value="lowToHigh">Score:Low to high</option>
-            <option value="highToLow">Score:High to low</option>
-            <option value="newest">Newer to Older</option>
-            <option value="older">Older to Newer</option>
-          </select>
-          <div class="rounds__col"></div>
+      </section>
+      <section id="rounds">
+        <div class="rounds">
+          <div class="container container--light">
+            <h2>User Rounds:</h2>
+            <select name="" id="" class="rounds__dropdown">
+              <option></option>
+              <option value="lowToHigh">Score:Low to high</option>
+              <option value="highToLow">Score:High to low</option>
+              <option value="newest">Newer to Older</option>
+              <option value="older">Older to Newer</option>
+            </select>
+            <div class="rounds__col"></div>
+          </div>
         </div>
-      </div>
+      </section>
     </main>
     <script src="./script.js"></script>
   </body>

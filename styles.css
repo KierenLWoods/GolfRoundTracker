@@ -29,6 +29,25 @@ body {
   flex-direction: column;
 }
 
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav__list {
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .score-container-drpdwn,
 .score-container-score,
 .score-container-table,
@@ -71,12 +90,11 @@ h1 {
   display: flex;
   flex-direction: column;
   border: 1px solid white;
-  width: 80%;
   padding: 2rem;
 }
 
-.round-cards {
-  padding: 2rem;
+.round-card-content {
+  padding: 1rem;
   background-color: lightgray;
   color: black;
   border-radius: 2rem;
