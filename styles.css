@@ -29,12 +29,6 @@ body {
   flex-direction: column;
 }
 
-.score-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .nav__list {
   align-self: flex-start;
   display: flex;
@@ -48,17 +42,17 @@ a {
   color: white;
 }
 
-.score-container-drpdwn,
+.add-round__dropdown,
 .score-container-score,
 .score-container-table,
-.submit-round-btn,
-.score-container-date {
+.add-round__submit-round-button,
+.add-round__date-input {
   display: none;
 }
 h1 {
   text-align: center;
 }
-.add-a-round-btn {
+.add-round__add-round-button {
   border-radius: 20px;
   padding: 1rem;
 }
@@ -68,7 +62,7 @@ h1 {
   padding: 0px 2rem;
 }
 
-.submit-round-btn {
+.add-round__submit-round-button {
   border-radius: 20px;
   padding: 1em;
 }

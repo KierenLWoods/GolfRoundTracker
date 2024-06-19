@@ -1,11 +1,13 @@
-const addRoundButton = document.getElementById("add-a-round");
+const addRoundButton = document.querySelector(".add-round__add-round-button");
 const scoreContainer = document.querySelector(".score-container");
-const courseDropDownList = document.querySelector(".score-container-drpdwn");
+const courseDropDownList = document.querySelector(".add-round__dropdown");
 const scoreSummaryContainer = document.querySelector(".rounds__col");
 const scorecardTable = document.querySelector(".score-container-table");
-const submitRoundButton = document.querySelector(".submit-round-btn");
+const submitRoundButton = document.querySelector(
+  ".add-round__submit-round-button"
+);
 const userScore = document.querySelector(".score-container-score");
-const roundDate = document.querySelector(".score-container-date");
+const roundDate = document.querySelector(".add-round__date-input");
 const roundsFilterDropDown = document.querySelector(".rounds__dropdown");
 
 let cardTableExists = false;
